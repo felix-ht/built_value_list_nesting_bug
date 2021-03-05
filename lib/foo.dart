@@ -10,6 +10,4 @@ abstract class Foo implements Built<Foo, FooBuilder> {
 
   Foo._();
   factory Foo([void Function(FooBuilder) updates]) = _$Foo;
-
-  static Serializer<Foo> get serializer => _$fooSerializer;
 }

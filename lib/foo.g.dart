@@ -6,47 +6,6 @@ part of 'foo.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<Foo> _$fooSerializer = new _$FooSerializer();
-
-class _$FooSerializer implements StructuredSerializer<Foo> {
-  @override
-  final Iterable<Type> types = const [Foo, _$Foo];
-  @override
-  final String wireName = 'Foo';
-
-  @override
-  Iterable<Object> serialize(Serializers serializers, Foo object,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
-      'bar',
-      serializers.serialize(object.bar, specifiedType: const FullType(double)),
-    ];
-
-    return result;
-  }
-
-  @override
-  Foo deserialize(Serializers serializers, Iterable<Object> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
-    final result = new FooBuilder();
-
-    final iterator = serialized.iterator;
-    while (iterator.moveNext()) {
-      final key = iterator.current as String;
-      iterator.moveNext();
-      final dynamic value = iterator.current;
-      switch (key) {
-        case 'bar':
-          result.bar = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double;
-          break;
-      }
-    }
-
-    return result.build();
-  }
-}
-
 class _$Foo extends Foo {
   @override
   final double bar;
